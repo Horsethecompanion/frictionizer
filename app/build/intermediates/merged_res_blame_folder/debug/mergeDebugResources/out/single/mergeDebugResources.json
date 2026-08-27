@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\xml_accessibility_service_config.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\xml\\accessibility_service_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_item_stat.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_stat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_item_app.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_app.xml"
+    },
+    {
+        "merged": "com.frictionizer.app-debug-41:/layout_overlay_friction.xml.flat",
+        "source": "com.frictionizer.app-main-43:/layout/overlay_friction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_logo_frictionizer.png.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\logo_frictionizer.png"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_search_bg.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\search_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_app_selection.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_app_selection.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_activities.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_activities.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_item_activity.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_stats.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_stats.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_overlay_friction.xml.flat",
+        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\overlay_friction.xml"
+    }
+]

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Frictionizer</string>
+    <string name="accessibility_service_label">Frictionizer</string>
+    <string name="accessibility_service_description">Frictionizer watches for app launches and briefly pauses you with a simple question — helping you be more intentional about how you use your time.</string>
+    <string name="title_select_apps">Select Apps</string>
+    <string name="title_manage_activities">Manage Activities</string>
+    <string name="title_stats">Usage Stats</string>
+    <string name="action_skip">Skip</string>
+</resources>
