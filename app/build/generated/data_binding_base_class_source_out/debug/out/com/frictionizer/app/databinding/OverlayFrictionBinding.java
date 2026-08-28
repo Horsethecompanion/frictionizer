@@ -4,8 +4,9 @@ package com.frictionizer.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,8 +14,6 @@ import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.frictionizer.app.R;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.chip.ChipGroup;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,33 +23,39 @@ public final class OverlayFrictionBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
-  public final MaterialButton btnGo;
-
-  @NonNull
-  public final Button btnSkip;
+  public final LinearLayout activitiesContainer;
 
   @NonNull
   public final CardView cardView;
 
   @NonNull
-  public final ChipGroup chipGroupActivities;
+  public final ProgressBar countdownProgress;
 
   @NonNull
   public final FrameLayout overlayContainer;
 
   @NonNull
+  public final TextView tvCountdown;
+
+  @NonNull
   public final TextView tvOpeningApp;
 
-  private OverlayFrictionBinding(@NonNull FrameLayout rootView, @NonNull MaterialButton btnGo,
-      @NonNull Button btnSkip, @NonNull CardView cardView, @NonNull ChipGroup chipGroupActivities,
-      @NonNull FrameLayout overlayContainer, @NonNull TextView tvOpeningApp) {
+  @NonNull
+  public final TextView tvWaitingHint;
+
+  private OverlayFrictionBinding(@NonNull FrameLayout rootView,
+      @NonNull LinearLayout activitiesContainer, @NonNull CardView cardView,
+      @NonNull ProgressBar countdownProgress, @NonNull FrameLayout overlayContainer,
+      @NonNull TextView tvCountdown, @NonNull TextView tvOpeningApp,
+      @NonNull TextView tvWaitingHint) {
     this.rootView = rootView;
-    this.btnGo = btnGo;
-    this.btnSkip = btnSkip;
+    this.activitiesContainer = activitiesContainer;
     this.cardView = cardView;
-    this.chipGroupActivities = chipGroupActivities;
+    this.countdownProgress = countdownProgress;
     this.overlayContainer = overlayContainer;
+    this.tvCountdown = tvCountdown;
     this.tvOpeningApp = tvOpeningApp;
+    this.tvWaitingHint = tvWaitingHint;
   }
 
   @Override
@@ -80,15 +85,9 @@ public final class OverlayFrictionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn_go;
-      MaterialButton btnGo = ViewBindings.findChildViewById(rootView, id);
-      if (btnGo == null) {
-        break missingId;
-      }
-
-      id = R.id.btn_skip;
-      Button btnSkip = ViewBindings.findChildViewById(rootView, id);
-      if (btnSkip == null) {
+      id = R.id.activities_container;
+      LinearLayout activitiesContainer = ViewBindings.findChildViewById(rootView, id);
+      if (activitiesContainer == null) {
         break missingId;
       }
 
@@ -98,13 +97,19 @@ public final class OverlayFrictionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.chip_group_activities;
-      ChipGroup chipGroupActivities = ViewBindings.findChildViewById(rootView, id);
-      if (chipGroupActivities == null) {
+      id = R.id.countdown_progress;
+      ProgressBar countdownProgress = ViewBindings.findChildViewById(rootView, id);
+      if (countdownProgress == null) {
         break missingId;
       }
 
       FrameLayout overlayContainer = (FrameLayout) rootView;
+
+      id = R.id.tv_countdown;
+      TextView tvCountdown = ViewBindings.findChildViewById(rootView, id);
+      if (tvCountdown == null) {
+        break missingId;
+      }
 
       id = R.id.tv_opening_app;
       TextView tvOpeningApp = ViewBindings.findChildViewById(rootView, id);
@@ -112,8 +117,14 @@ public final class OverlayFrictionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new OverlayFrictionBinding((FrameLayout) rootView, btnGo, btnSkip, cardView,
-          chipGroupActivities, overlayContainer, tvOpeningApp);
+      id = R.id.tv_waiting_hint;
+      TextView tvWaitingHint = ViewBindings.findChildViewById(rootView, id);
+      if (tvWaitingHint == null) {
+        break missingId;
+      }
+
+      return new OverlayFrictionBinding((FrameLayout) rootView, activitiesContainer, cardView,
+          countdownProgress, overlayContainer, tvCountdown, tvOpeningApp, tvWaitingHint);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

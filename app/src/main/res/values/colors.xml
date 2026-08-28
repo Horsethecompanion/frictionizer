@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="teal">#00E5FF</color>
-    <color name="teal_dark">#00B8D4</color>
-    <color name="bg_dark">#0D0D12</color>
-    <color name="card_dark">#16161E</color>
-    <color name="white">#F0F0F5</color>
-    <color name="white_muted">#80F0F0F5</color>
-    <color name="outline">#2C2C3A</color>
-    <color name="status_active">#2DD4BF</color>
-    <color name="status_inactive">#F87171</color>
-    <color name="scrim">#DD000000</color>
+    <!-- Primary accent: calm slate blue (light mode) -->
+    <color name="primary">#4A7FA5</color>
+    <color name="primary_dark">#3A6A8C</color>
+    <color name="on_primary">#FFFFFF</color>
+
+    <!-- Backgrounds (light mode) -->
+    <color name="bg">#EEF2F7</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#E4EAF2</color>
+
+    <!-- Text (light mode) -->
+    <color name="text_primary">#1A2234</color>
+    <color name="text_secondary">#5A6878</color>
+
+    <!-- Status -->
+    <color name="status_active">#4E9B89</color>
+    <color name="status_inactive">#C17B7B</color>
+    <color name="status_active_text">#F0FDF8</color>
+    <color name="status_inactive_text">#FEF2F2</color>
+
+    <!-- Overlay always dark regardless of theme -->
+    <color name="overlay_bg">#0D1018</color>
+    <color name="overlay_surface">#141A28</color>
+    <color name="overlay_surface_elevated">#1C2438</color>
+    <color name="overlay_primary">#7BABC8</color>
+    <color name="overlay_text">#DCE5F0</color>
+    <color name="overlay_text_muted">#7A90A8</color>
+    <color name="overlay_chip_bg">#1E2B3F</color>
+    <color name="overlay_chip_bg_sel">#2A4A6A</color>
+    <color name="overlay_chip_stroke">#2E3F55</color>
+    <color name="scrim">#E0080C14</color>
+
+    <!-- Shared -->
+    <color name="divider">#20607898</color>
+    <color name="white">#FFFFFF</color>
+    <color name="destructive">#C17B7B</color>
+
+    <!-- Compatibility with old names if any -->
+    <color name="teal">#7BABC8</color>
+    <color name="teal_dark">#5A90B5</color>
+    <color name="bg_dark">#131925</color>
+    <color name="card_dark">#1C2535</color>
+    <color name="white_muted">#80DCE5F0</color>
 </resources>

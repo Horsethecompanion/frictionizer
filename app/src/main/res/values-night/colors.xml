@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary: lighter for dark mode -->
+    <color name="primary">#7BABC8</color>
+    <color name="primary_dark">#5A90B5</color>
+    <color name="on_primary">#0D1A26</color>
+
+    <!-- Backgrounds (dark mode) -->
+    <color name="bg">#131925</color>
+    <color name="surface">#1C2535</color>
+    <color name="surface_variant">#232E44</color>
+
+    <!-- Text (dark mode) -->
+    <color name="text_primary">#DCE5F0</color>
+    <color name="text_secondary">#8098B0</color>
+</resources>

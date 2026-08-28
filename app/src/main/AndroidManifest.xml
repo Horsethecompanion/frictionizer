@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Needed to list installed apps (Android 11+) -->
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
@@ -13,33 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Frictionizer">
 
-        <!-- Main hub activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AppSelectionActivity"
-            android:label="@string/title_select_apps"
-            android:exported="false" />
+        <activity android:name=".AppSelectionActivity"
+            android:label="@string/title_select_apps" android:exported="false" />
 
-        <activity
-            android:name=".ActivitiesActivity"
-            android:label="@string/title_manage_activities"
-            android:exported="false" />
+        <activity android:name=".ActivitiesActivity"
+            android:label="@string/title_manage_activities" android:exported="false" />
 
-        <activity
-            android:name=".StatsActivity"
-            android:label="@string/title_stats"
-            android:exported="false" />
+        <activity android:name=".StatsActivity"
+            android:label="@string/title_stats" android:exported="false" />
 
-        <!-- The core accessibility service -->
+        <activity android:name=".SettingsActivity"
+            android:label="@string/title_settings" android:exported="false" />
+
         <service
             android:name=".FrictionizerAccessibilityService"
             android:exported="true"

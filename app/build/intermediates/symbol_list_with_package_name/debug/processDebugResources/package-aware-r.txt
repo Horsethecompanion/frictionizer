@@ -1354,6 +1354,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color bg
 color bg_dark
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
@@ -1408,10 +1409,12 @@ color design_fab_stroke_top_inner_color
 color design_fab_stroke_top_outer_color
 color design_icon_tint
 color design_snackbar_background_color
+color destructive
 color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color divider
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -2071,7 +2074,18 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
-color outline
+color on_primary
+color overlay_bg
+color overlay_chip_bg
+color overlay_chip_bg_sel
+color overlay_chip_stroke
+color overlay_primary
+color overlay_surface
+color overlay_surface_elevated
+color overlay_text
+color overlay_text_muted
+color primary
+color primary_dark
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -2088,7 +2102,11 @@ color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
 color status_active
+color status_active_text
 color status_inactive
+color status_inactive_text
+color surface
+color surface_variant
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -2097,6 +2115,8 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color teal
 color teal_dark
+color text_primary
+color text_secondary
 color tooltip_background_dark
 color tooltip_background_light
 color white
@@ -2986,6 +3006,8 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable chip_activity_selector
+drawable countdown_ring_track
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -3010,6 +3032,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_pause_bars
 drawable ic_search_black_24
 drawable logo_frictionizer
 drawable m3_avd_hide_password
@@ -3157,6 +3180,7 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_text
 id actions
+id activities_container
 id activities_root
 id activity_chooser_view_content
 id add
@@ -3189,14 +3213,15 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btn_clear_data
+id btn_confirm_reset
 id btn_delete
 id btn_disable_battery_opt
 id btn_edit
 id btn_enable_service
-id btn_go
 id btn_manage_activities
+id btn_pick_bedtime
 id btn_select_apps
-id btn_skip
+id btn_settings
 id btn_stats
 id buttonPanel
 id cache_measures
@@ -3217,7 +3242,6 @@ id chain2
 id chains
 id checkbox
 id checked
-id chip_group_activities
 id chronometer
 id circle_center
 id clear_text
@@ -3236,6 +3260,7 @@ id contiguous
 id continuousVelocity
 id coordinator
 id cos
+id countdown_progress
 id counterclockwise
 id cradle
 id currentState
@@ -3284,6 +3309,7 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id et_reset_input
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3336,7 +3362,6 @@ id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
 id iv_app_icon
-id iv_logo
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3350,7 +3375,6 @@ id linear
 id listMode
 id list_item
 id m3_side_sheet
-id main_content_layout
 id main_scroll_view
 id marquee
 id masked
@@ -3481,6 +3505,7 @@ id rightToLeft
 id right_icon
 id right_side
 id rounded
+id row_bedtime_time
 id row_index_key
 id save_non_transition_alpha
 id save_overlay_view
@@ -3545,6 +3570,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id switch_bedtime
 id tabMode
 id tab_layout
 id tag_accessibility_actions
@@ -3581,6 +3607,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbar
 id top
 id topPanel
 id touch_outside
@@ -3594,12 +3621,16 @@ id transition_transform
 id triangle
 id tv_activity_name
 id tv_app_label
+id tv_countdown
+id tv_countdown_info
 id tv_no_data
 id tv_opening_app
+id tv_reset_code
 id tv_service_status
 id tv_stat_duration
 id tv_stat_primary
 id tv_stat_secondary
+id tv_waiting_hint
 id unchecked
 id uniform
 id unlabeled
@@ -3740,6 +3771,7 @@ layout abc_tooltip
 layout activity_activities
 layout activity_app_selection
 layout activity_main
+layout activity_settings
 layout activity_stats
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3999,6 +4031,7 @@ string side_sheet_behavior
 string status_bar_notification_info_overflow
 string title_manage_activities
 string title_select_apps
+string title_settings
 string title_stats
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -4290,8 +4323,9 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
-style Frictionizer_ActionBar
-style Frictionizer_ActionBar_TitleText
+style Frictionizer_OverlayChip
+style Frictionizer_Toolbar
+style Frictionizer_ToolbarTitle
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text
@@ -4554,6 +4588,7 @@ style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
 style Theme_Frictionizer
+style Theme_Frictionizer_Night
 style Theme_Material3_Dark
 style Theme_Material3_Dark_BottomSheetDialog
 style Theme_Material3_Dark_Dialog

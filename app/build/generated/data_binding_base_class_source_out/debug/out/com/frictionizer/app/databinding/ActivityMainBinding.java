@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,7 +21,7 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final Button btnDisableBatteryOpt;
@@ -36,6 +36,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button btnSelectApps;
 
   @NonNull
+  public final Button btnSettings;
+
+  @NonNull
   public final Button btnStats;
 
   @NonNull
@@ -45,40 +48,37 @@ public final class ActivityMainBinding implements ViewBinding {
   public final CardView cardStatus;
 
   @NonNull
-  public final ImageView ivLogo;
-
-  @NonNull
-  public final LinearLayout mainContentLayout;
-
-  @NonNull
   public final ScrollView mainScrollView;
+
+  @NonNull
+  public final Toolbar toolbar;
 
   @NonNull
   public final TextView tvServiceStatus;
 
-  private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull Button btnDisableBatteryOpt,
+  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button btnDisableBatteryOpt,
       @NonNull Button btnEnableService, @NonNull Button btnManageActivities,
-      @NonNull Button btnSelectApps, @NonNull Button btnStats, @NonNull CardView cardBattery,
-      @NonNull CardView cardStatus, @NonNull ImageView ivLogo,
-      @NonNull LinearLayout mainContentLayout, @NonNull ScrollView mainScrollView,
+      @NonNull Button btnSelectApps, @NonNull Button btnSettings, @NonNull Button btnStats,
+      @NonNull CardView cardBattery, @NonNull CardView cardStatus,
+      @NonNull ScrollView mainScrollView, @NonNull Toolbar toolbar,
       @NonNull TextView tvServiceStatus) {
     this.rootView = rootView;
     this.btnDisableBatteryOpt = btnDisableBatteryOpt;
     this.btnEnableService = btnEnableService;
     this.btnManageActivities = btnManageActivities;
     this.btnSelectApps = btnSelectApps;
+    this.btnSettings = btnSettings;
     this.btnStats = btnStats;
     this.cardBattery = cardBattery;
     this.cardStatus = cardStatus;
-    this.ivLogo = ivLogo;
-    this.mainContentLayout = mainContentLayout;
     this.mainScrollView = mainScrollView;
+    this.toolbar = toolbar;
     this.tvServiceStatus = tvServiceStatus;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -127,6 +127,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_settings;
+      Button btnSettings = ViewBindings.findChildViewById(rootView, id);
+      if (btnSettings == null) {
+        break missingId;
+      }
+
       id = R.id.btn_stats;
       Button btnStats = ViewBindings.findChildViewById(rootView, id);
       if (btnStats == null) {
@@ -145,19 +151,17 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.iv_logo;
-      ImageView ivLogo = ViewBindings.findChildViewById(rootView, id);
-      if (ivLogo == null) {
+      id = R.id.main_scroll_view;
+      ScrollView mainScrollView = ViewBindings.findChildViewById(rootView, id);
+      if (mainScrollView == null) {
         break missingId;
       }
 
-      id = R.id.main_content_layout;
-      LinearLayout mainContentLayout = ViewBindings.findChildViewById(rootView, id);
-      if (mainContentLayout == null) {
+      id = R.id.toolbar;
+      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
         break missingId;
       }
-
-      ScrollView mainScrollView = (ScrollView) rootView;
 
       id = R.id.tv_service_status;
       TextView tvServiceStatus = ViewBindings.findChildViewById(rootView, id);
@@ -165,9 +169,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ScrollView) rootView, btnDisableBatteryOpt, btnEnableService,
-          btnManageActivities, btnSelectApps, btnStats, cardBattery, cardStatus, ivLogo,
-          mainContentLayout, mainScrollView, tvServiceStatus);
+      return new ActivityMainBinding((LinearLayout) rootView, btnDisableBatteryOpt,
+          btnEnableService, btnManageActivities, btnSelectApps, btnSettings, btnStats, cardBattery,
+          cardStatus, mainScrollView, toolbar, tvServiceStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

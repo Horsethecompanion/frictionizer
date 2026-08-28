@@ -20,6 +20,10 @@
         "source": "com.frictionizer.app-main-43:/layout/overlay_friction.xml"
     },
     {
+        "merged": "com.frictionizer.app-debug-41:/layout_activity_main.xml.flat",
+        "source": "com.frictionizer.app-main-43:/layout/activity_main.xml"
+    },
+    {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_logo_frictionizer.png.flat",
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\logo_frictionizer.png"
     },
@@ -32,8 +36,16 @@
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "com.frictionizer.app-debug-41:/layout_activity_settings.xml.flat",
+        "source": "com.frictionizer.app-main-43:/layout/activity_settings.xml"
+    },
+    {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.frictionizer.app-debug-41:/drawable_countdown_ring_track.xml.flat",
+        "source": "com.frictionizer.app-main-43:/drawable/countdown_ring_track.xml"
     },
     {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_app_selection.xml.flat",
@@ -48,12 +60,20 @@
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "com.frictionizer.app-debug-41:/drawable_ic_pause_bars.xml.flat",
+        "source": "com.frictionizer.app-main-43:/drawable/ic_pause_bars.xml"
+    },
+    {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_item_activity.xml.flat",
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_activity.xml"
     },
     {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.frictionizer.app-debug-41:/drawable_chip_activity_selector.xml.flat",
+        "source": "com.frictionizer.app-main-43:/drawable/chip_activity_selector.xml"
     },
     {
         "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-debug-41:\\layout_activity_stats.xml.flat",
