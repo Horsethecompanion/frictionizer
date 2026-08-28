@@ -37,6 +37,8 @@
     <color name="white">#FFFFFF</color>
     <color name="destructive">#C17B7B</color>
 
+    <color name="ic_launcher_background">#FFFFFF</color>
+
     <!-- Compatibility with old names if any -->
     <color name="teal">#7BABC8</color>
     <color name="teal_dark">#5A90B5</color>

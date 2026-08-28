@@ -1421,6 +1421,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -3013,6 +3014,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable frictionizer_wordmark
+drawable frictionizer_wordmark_large
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3193,7 +3196,6 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
-id app_selection_root
 id arc
 id asConfigured
 id async
@@ -3212,6 +3214,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btn_add_other
 id btn_clear_data
 id btn_confirm_reset
 id btn_delete
@@ -3490,6 +3493,7 @@ id pooling_container_listener_holder_tag
 id position
 id postLayout
 id pressed
+id progress_bar
 id progress_circular
 id progress_horizontal
 id radio
@@ -3623,6 +3627,7 @@ id tv_activity_name
 id tv_app_label
 id tv_countdown
 id tv_countdown_info
+id tv_empty
 id tv_no_data
 id tv_opening_app
 id tv_reset_code
@@ -3857,6 +3862,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description

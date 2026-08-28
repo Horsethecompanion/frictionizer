@@ -1,46 +1,38 @@
 [
     {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\activity_activities.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_activities.xml"
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/activity_app_selection.xml",
+        "source": "com.frictionizer.app-main-43:/layout/activity_app_selection.xml"
     },
     {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_main.xml"
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/activity_stats.xml",
+        "source": "com.frictionizer.app-main-43:/layout/activity_stats.xml"
+    },
+    {
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/activity_activities.xml",
+        "source": "com.frictionizer.app-main-43:/layout/activity_activities.xml"
+    },
+    {
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/item_app.xml",
+        "source": "com.frictionizer.app-main-43:/layout/item_app.xml"
     },
     {
         "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/activity_settings.xml",
         "source": "com.frictionizer.app-main-43:/layout/activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\item_activity.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_activity.xml"
-    },
-    {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\activity_app_selection.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_app_selection.xml"
-    },
-    {
         "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/overlay_friction.xml",
         "source": "com.frictionizer.app-main-43:/layout/overlay_friction.xml"
-    },
-    {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\item_stat.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_stat.xml"
     },
     {
         "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/activity_main.xml",
         "source": "com.frictionizer.app-main-43:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\activity_stats.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\activity_stats.xml"
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/item_activity.xml",
+        "source": "com.frictionizer.app-main-43:/layout/item_activity.xml"
     },
     {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\overlay_friction.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\overlay_friction.xml"
-    },
-    {
-        "merged": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-mergeDebugResources-40:\\layout\\item_app.xml",
-        "source": "C:\\Users\\Sony\\.gradle\\daemon\\8.10.2\\com.frictionizer.app-main-43:\\layout\\item_app.xml"
+        "merged": "com.frictionizer.app-mergeDebugResources-40:/layout/item_stat.xml",
+        "source": "com.frictionizer.app-main-43:/layout/item_stat.xml"
     }
 ]

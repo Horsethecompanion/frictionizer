@@ -4,10 +4,14 @@ package com.frictionizer.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,7 +25,10 @@ public final class ActivityAppSelectionBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final LinearLayout appSelectionRoot;
+  public final Button btnAddOther;
+
+  @NonNull
+  public final ProgressBar progressBar;
 
   @NonNull
   public final RecyclerView recyclerApps;
@@ -29,13 +36,22 @@ public final class ActivityAppSelectionBinding implements ViewBinding {
   @NonNull
   public final SearchView searchView;
 
-  private ActivityAppSelectionBinding(@NonNull LinearLayout rootView,
-      @NonNull LinearLayout appSelectionRoot, @NonNull RecyclerView recyclerApps,
-      @NonNull SearchView searchView) {
+  @NonNull
+  public final Toolbar toolbar;
+
+  @NonNull
+  public final TextView tvEmpty;
+
+  private ActivityAppSelectionBinding(@NonNull LinearLayout rootView, @NonNull Button btnAddOther,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView recyclerApps,
+      @NonNull SearchView searchView, @NonNull Toolbar toolbar, @NonNull TextView tvEmpty) {
     this.rootView = rootView;
-    this.appSelectionRoot = appSelectionRoot;
+    this.btnAddOther = btnAddOther;
+    this.progressBar = progressBar;
     this.recyclerApps = recyclerApps;
     this.searchView = searchView;
+    this.toolbar = toolbar;
+    this.tvEmpty = tvEmpty;
   }
 
   @Override
@@ -65,7 +81,17 @@ public final class ActivityAppSelectionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      LinearLayout appSelectionRoot = (LinearLayout) rootView;
+      id = R.id.btn_add_other;
+      Button btnAddOther = ViewBindings.findChildViewById(rootView, id);
+      if (btnAddOther == null) {
+        break missingId;
+      }
+
+      id = R.id.progress_bar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
 
       id = R.id.recycler_apps;
       RecyclerView recyclerApps = ViewBindings.findChildViewById(rootView, id);
@@ -79,8 +105,20 @@ public final class ActivityAppSelectionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityAppSelectionBinding((LinearLayout) rootView, appSelectionRoot,
-          recyclerApps, searchView);
+      id = R.id.toolbar;
+      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_empty;
+      TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmpty == null) {
+        break missingId;
+      }
+
+      return new ActivityAppSelectionBinding((LinearLayout) rootView, btnAddOther, progressBar,
+          recyclerApps, searchView, toolbar, tvEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

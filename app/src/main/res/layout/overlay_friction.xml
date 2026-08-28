@@ -34,11 +34,13 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="24dp">
 
+                <!-- Full Wordmark Logo -->
                 <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_pause_bars"
-                    android:contentDescription="Frictionizer icon" />
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/frictionizer_wordmark"
+                    android:scaleType="fitStart"
+                    android:contentDescription="Frictionizer" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -46,15 +48,6 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginStart="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="FRICTIONIZER"
-                        android:textColor="@color/overlay_primary"
-                        android:textSize="10sp"
-                        android:letterSpacing="0.3"
-                        android:fontFamily="sans-serif-medium" />
 
                     <TextView
                         android:id="@+id/tv_opening_app"
@@ -65,6 +58,7 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
+                <!-- Countdown ring -->
                 <FrameLayout
                     android:layout_width="52dp"
                     android:layout_height="52dp">

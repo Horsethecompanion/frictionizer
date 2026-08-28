@@ -5,6 +5,7 @@ color bg_dark
 color card_dark
 color destructive
 color divider
+color ic_launcher_background
 color on_primary
 color overlay_bg
 color overlay_chip_bg
@@ -32,6 +33,8 @@ color white
 color white_muted
 drawable chip_activity_selector
 drawable countdown_ring_track
+drawable frictionizer_wordmark
+drawable frictionizer_wordmark_large
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_pause_bars
@@ -39,7 +42,7 @@ drawable logo_frictionizer
 drawable search_bg
 id activities_container
 id activities_root
-id app_selection_root
+id btn_add_other
 id btn_clear_data
 id btn_confirm_reset
 id btn_delete
@@ -61,6 +64,7 @@ id fab_add_activity
 id iv_app_icon
 id main_scroll_view
 id overlay_container
+id progress_bar
 id recycler_activities
 id recycler_apps
 id recycler_stats
@@ -74,6 +78,7 @@ id tv_activity_name
 id tv_app_label
 id tv_countdown
 id tv_countdown_info
+id tv_empty
 id tv_no_data
 id tv_opening_app
 id tv_reset_code
@@ -92,6 +97,7 @@ layout item_app
 layout item_stat
 layout overlay_friction
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string accessibility_service_description
 string accessibility_service_label
