@@ -4,7 +4,7 @@
             "outputFile": "com.frictionizer.app-mergeDebugResources-39:/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Sony\\.gradle\\caches\\8.10.2\\transforms\\90b7ad7b7ceda2ce3ed848c3a9b03710\\transformed\\material-1.11.0\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "/Users/horse/.gradle/caches/8.10.2/transforms/3d543d7631218812fc01aac46c21367a/transformed/material-1.11.0/res/values-small-v4/values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

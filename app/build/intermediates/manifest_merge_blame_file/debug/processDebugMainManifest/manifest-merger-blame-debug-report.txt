@@ -9,192 +9,192 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
-11-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:4:5-77
-11-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:4:22-74
+11-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:4:5-77
+11-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:4:22-74
 12    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-12-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:5:5-95
-12-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:5:22-92
+12-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:5:5-95
+12-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:5:22-92
 13
 14    <permission
-14-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+14-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
 15        android:name="com.frictionizer.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-15-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+15-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
 16        android:protectionLevel="signature" />
-16-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+16-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
 17
 18    <uses-permission android:name="com.frictionizer.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-18-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-18-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+18-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
 19
 20    <application
-20-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:7:5-51:19
+20-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:7:5-51:19
 21        android:allowBackup="true"
-21-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:8:9-35
+21-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:8:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-22-->[androidx.core:core:1.12.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\da613292e7eee354353b9a2281d68b9b\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+22-->[androidx.core:core:1.12.0] /Users/horse/.gradle/caches/8.10.2/transforms/aa4621e1686b3ae0be0492c8f5a382d5/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 23        android:debuggable="true"
 24        android:extractNativeLibs="false"
 25        android:icon="@mipmap/ic_launcher"
-25-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:9:9-43
+25-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:9:9-43
 26        android:label="@string/app_name"
-26-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:10:9-41
+26-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:10:9-41
 27        android:roundIcon="@mipmap/ic_launcher_round"
-27-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:11:9-54
+27-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:11:9-54
 28        android:supportsRtl="true"
-28-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:12:9-35
+28-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:12:9-35
 29        android:theme="@style/Theme.Frictionizer" >
-29-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:13:9-50
+29-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:13:9-50
 30        <activity
-30-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:15:9-24:20
+30-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:15:9-24:20
 31            android:name="com.frictionizer.app.MainActivity"
-31-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:16:13-41
+31-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:16:13-41
 32            android:exported="true"
-32-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:17:13-36
+32-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:17:13-36
 33            android:label="@string/app_name"
-33-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:18:13-45
+33-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:18:13-45
 34            android:windowSoftInputMode="adjustResize" >
-34-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:19:13-55
+34-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:19:13-55
 35            <intent-filter>
-35-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:20:13-23:29
+35-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:20:13-23:29
 36                <action android:name="android.intent.action.MAIN" />
-36-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:21:17-69
-36-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:21:25-66
+36-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:21:17-69
+36-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:21:25-66
 37
 38                <category android:name="android.intent.category.LAUNCHER" />
-38-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:22:17-77
-38-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:22:27-74
+38-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:22:17-77
+38-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:22:27-74
 39            </intent-filter>
 40        </activity>
 41        <activity
-41-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:26:9-27:82
+41-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:26:9-27:82
 42            android:name="com.frictionizer.app.AppSelectionActivity"
-42-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:26:19-55
+42-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:26:19-55
 43            android:exported="false"
-43-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:27:55-79
+43-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:27:55-79
 44            android:label="@string/title_select_apps" />
-44-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:27:13-54
+44-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:27:13-54
 45        <activity
-45-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:29:9-30:88
+45-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:29:9-30:88
 46            android:name="com.frictionizer.app.ActivitiesActivity"
-46-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:29:19-53
+46-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:29:19-53
 47            android:exported="false"
-47-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:30:61-85
+47-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:30:61-85
 48            android:label="@string/title_manage_activities" />
-48-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:30:13-60
+48-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:30:13-60
 49        <activity
-49-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:32:9-33:76
+49-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:32:9-33:76
 50            android:name="com.frictionizer.app.StatsActivity"
-50-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:32:19-48
+50-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:32:19-48
 51            android:exported="false"
-51-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:33:49-73
+51-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:33:49-73
 52            android:label="@string/title_stats" />
-52-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:33:13-48
+52-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:33:13-48
 53        <activity
-53-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:35:9-36:79
+53-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:35:9-36:79
 54            android:name="com.frictionizer.app.SettingsActivity"
-54-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:35:19-51
+54-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:35:19-51
 55            android:exported="false"
-55-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:36:52-76
+55-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:36:52-76
 56            android:label="@string/title_settings" />
-56-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:36:13-51
+56-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:36:13-51
 57
 58        <service
-58-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:38:9-49:19
+58-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:38:9-49:19
 59            android:name="com.frictionizer.app.FrictionizerAccessibilityService"
-59-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:39:13-61
+59-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:39:13-61
 60            android:exported="true"
-60-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:40:13-36
+60-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:40:13-36
 61            android:label="@string/accessibility_service_label"
-61-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:41:13-64
+61-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:41:13-64
 62            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
-62-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:42:13-79
+62-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:42:13-79
 63            <intent-filter>
-63-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:43:13-45:29
+63-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:43:13-45:29
 64                <action android:name="android.accessibilityservice.AccessibilityService" />
-64-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:44:17-92
-64-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:44:25-89
+64-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:44:17-92
+64-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:44:25-89
 65            </intent-filter>
 66
 67            <meta-data
-67-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:46:13-48:72
+67-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:46:13-48:72
 68                android:name="android.accessibilityservice"
-68-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:47:17-60
+68-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:47:17-60
 69                android:resource="@xml/accessibility_service_config" />
-69-->F:\Frictionizer\Frictionizer\app\src\main\AndroidManifest.xml:48:17-69
+69-->/Users/horse/AndroidStudioProjects/frictionizer/app/src/main/AndroidManifest.xml:48:17-69
 70        </service>
 71
 72        <provider
-72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+72-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
 73            android:name="androidx.startup.InitializationProvider"
-73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+73-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
 74            android:authorities="com.frictionizer.app.androidx-startup"
-74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+74-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
 75            android:exported="false" >
-75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+75-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
 76            <meta-data
-76-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+76-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
 77                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+77-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
 78                android:value="androidx.startup" />
-78-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c4698199b6b69ff11a938db90c759875\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+78-->[androidx.emoji2:emoji2:1.2.0] /Users/horse/.gradle/caches/8.10.2/transforms/c195d5329b7b7d2b8e5214e1cd74641a/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
 79            <meta-data
-79-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c372540d9da6f6c659ff881d029e5aff\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+79-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/horse/.gradle/caches/8.10.2/transforms/f9869cd675daca0b29c9ac858f3f33dc/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
 80                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-80-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c372540d9da6f6c659ff881d029e5aff\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+80-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/horse/.gradle/caches/8.10.2/transforms/f9869cd675daca0b29c9ac858f3f33dc/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
 81                android:value="androidx.startup" />
-81-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\c372540d9da6f6c659ff881d029e5aff\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+81-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/horse/.gradle/caches/8.10.2/transforms/f9869cd675daca0b29c9ac858f3f33dc/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
 82            <meta-data
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
 83                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
 84                android:value="androidx.startup" />
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
 85        </provider>
 86
 87        <service
-87-->[androidx.room:room-runtime:2.6.1] C:\Users\Sony\.gradle\caches\8.10.2\transforms\adc55e8500833a424caacea5277cc5a0\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+87-->[androidx.room:room-runtime:2.6.1] /Users/horse/.gradle/caches/8.10.2/transforms/9dd2d080aca8b260a9784d159af999c1/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
 88            android:name="androidx.room.MultiInstanceInvalidationService"
-88-->[androidx.room:room-runtime:2.6.1] C:\Users\Sony\.gradle\caches\8.10.2\transforms\adc55e8500833a424caacea5277cc5a0\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+88-->[androidx.room:room-runtime:2.6.1] /Users/horse/.gradle/caches/8.10.2/transforms/9dd2d080aca8b260a9784d159af999c1/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
 89            android:directBootAware="true"
-89-->[androidx.room:room-runtime:2.6.1] C:\Users\Sony\.gradle\caches\8.10.2\transforms\adc55e8500833a424caacea5277cc5a0\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+89-->[androidx.room:room-runtime:2.6.1] /Users/horse/.gradle/caches/8.10.2/transforms/9dd2d080aca8b260a9784d159af999c1/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
 90            android:exported="false" />
-90-->[androidx.room:room-runtime:2.6.1] C:\Users\Sony\.gradle\caches\8.10.2\transforms\adc55e8500833a424caacea5277cc5a0\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+90-->[androidx.room:room-runtime:2.6.1] /Users/horse/.gradle/caches/8.10.2/transforms/9dd2d080aca8b260a9784d159af999c1/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
 91
 92        <receiver
-92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
 93            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
 94            android:directBootAware="false"
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
 95            android:enabled="true"
-95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
 96            android:exported="true"
-96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
 97            android:permission="android.permission.DUMP" >
-97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
 98            <intent-filter>
-98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
 99                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
 100            </intent-filter>
 101            <intent-filter>
-101-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
 102                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
 103            </intent-filter>
 104            <intent-filter>
-104-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
 105                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-105-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-105-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
 106            </intent-filter>
 107            <intent-filter>
-107-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+107-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
 108                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Sony\.gradle\caches\8.10.2\transforms\cd1fe019527445e624612c237dd37171\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/horse/.gradle/caches/8.10.2/transforms/b076745099a0afbf88fea37450061119/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
 109            </intent-filter>
 110        </receiver>
 111    </application>

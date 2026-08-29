@@ -28,6 +28,9 @@ class AppSelectionActivity : AppCompatActivity() {
     private lateinit var adapter: AppAdapter
     private val selectedApps = mutableSetOf<String>()
 
+    private var curatedApps: List<AppInfo> = emptyList()
+    private var allSystemApps: List<AppInfo> = emptyList()
+
     // Known time-waster package names
     private val KNOWN_TIME_WASTERS = setOf(
         // Social media
@@ -109,7 +112,11 @@ class AppSelectionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            v.updatePadding(top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top)
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.updatePadding(
+                top = systemBars.top,
+                bottom = systemBars.bottom
+            )
             insets
         }
 
@@ -117,6 +124,7 @@ class AppSelectionActivity : AppCompatActivity() {
         adapter = AppAdapter(selectedApps) { pkg, checked ->
             if (checked) selectedApps.add(pkg) else selectedApps.remove(pkg)
             PrefsHelper.setMonitoredApps(this, selectedApps)
+            refreshDisplayList()
         }
 
         binding.recyclerApps.layoutManager = LinearLayoutManager(this)
@@ -125,22 +133,37 @@ class AppSelectionActivity : AppCompatActivity() {
         // "Add other app" button shows searchable full list dialog
         binding.btnAddOther.setOnClickListener { showAllAppsDialog() }
 
-        // Search within the curated list
+        // Search within the curated list OR global search if text is present
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter(newText.orEmpty())
+                if (newText.isNullOrBlank()) {
+                    refreshDisplayList()
+                } else {
+                    adapter.filterGlobal(newText, allSystemApps)
+                }
                 return true
             }
         })
 
         CoroutineScope(Dispatchers.Main).launch {
             binding.progressBar.visibility = View.VISIBLE
-            val apps = withContext(Dispatchers.IO) { loadCuratedApps() }
+            val curated = withContext(Dispatchers.IO) { loadCuratedApps() }
+            allSystemApps = withContext(Dispatchers.IO) { loadAllAppsIncludingSystem() }
+            curatedApps = curated
             binding.progressBar.visibility = View.GONE
-            adapter.setItems(apps)
-            if (apps.isEmpty()) binding.tvEmpty.visibility = View.VISIBLE
+            refreshDisplayList()
         }
+    }
+
+    private fun refreshDisplayList() {
+        // Show curated apps PLUS any other apps that are currently selected
+        val extraSelected = allSystemApps.filter { 
+            it.packageName in selectedApps && it.packageName !in KNOWN_TIME_WASTERS 
+        }
+        val combined = (curatedApps + extraSelected).distinctBy { it.packageName }.sortedBy { it.label }
+        adapter.setItems(combined)
+        binding.tvEmpty.visibility = if (combined.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onSupportNavigateUp(): Boolean { finish(); return true }
@@ -151,6 +174,19 @@ class AppSelectionActivity : AppCompatActivity() {
             .filter { app ->
                 app.packageName in KNOWN_TIME_WASTERS &&
                 pm.getLaunchIntentForPackage(app.packageName) != null
+            }
+            .map { app ->
+                AppInfo(app.packageName, app.loadLabel(pm).toString(), app.loadIcon(pm))
+            }
+            .sortedBy { it.label }
+    }
+
+    private fun loadAllAppsIncludingSystem(): List<AppInfo> {
+        val pm = packageManager
+        return pm.getInstalledApplications(PackageManager.GET_META_DATA)
+            .filter { app ->
+                pm.getLaunchIntentForPackage(app.packageName) != null &&
+                app.packageName != packageName
             }
             .map { app ->
                 AppInfo(app.packageName, app.loadLabel(pm).toString(), app.loadIcon(pm))
@@ -193,8 +229,7 @@ class AppSelectionActivity : AppCompatActivity() {
                     val pkg = otherApps[which].packageName
                     if (isChecked) selectedApps.add(pkg) else selectedApps.remove(pkg)
                     PrefsHelper.setMonitoredApps(this@AppSelectionActivity, selectedApps)
-                    // Refresh main list to show newly added items
-                    adapter.notifyDataSetChanged()
+                    refreshDisplayList()
                 }
                 .setPositiveButton("Done", null)
                 .show()
@@ -215,9 +250,8 @@ class AppSelectionActivity : AppCompatActivity() {
             allItems = list; displayItems = list; notifyDataSetChanged()
         }
 
-        fun filter(query: String) {
-            displayItems = if (query.isBlank()) allItems
-            else allItems.filter { it.label.contains(query, ignoreCase = true) }
+        fun filterGlobal(query: String, allApps: List<AppInfo>) {
+            displayItems = allApps.filter { it.label.contains(query, ignoreCase = true) }
             notifyDataSetChanged()
         }
 
