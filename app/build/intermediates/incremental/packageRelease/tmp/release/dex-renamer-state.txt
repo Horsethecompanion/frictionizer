@@ -1,0 +1,4 @@
+#Sun Aug 30 10:35:43 NZST 2026
+base.0=/Users/horse/AndroidStudioProjects/frictionizer/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

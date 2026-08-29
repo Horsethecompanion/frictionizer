@@ -24,10 +24,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.mainScrollView) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.mainRoot) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.updatePadding(
-                top = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
-                bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+                top = systemBars.top,
+                bottom = systemBars.bottom
             )
             insets
         }

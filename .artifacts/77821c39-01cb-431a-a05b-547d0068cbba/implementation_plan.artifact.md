@@ -1,26 +1,44 @@
-# Fix YouTube Crash and Refine Media Pausing
+# UI Refinement and Release Preparation
 
-The previous attempt to force YouTube to pause was too aggressive and is causing YouTube to crash in the background. This plan reverts the aggressive changes and implements a safer, more standard approach to pausing media.
+This plan addresses UI layout issues on the main screen and branding updates, followed by building a shareable APK.
 
 ## User Review Required
 
-> [!WARNING]
-> I am removing the manual "Media Pause" key injection as it is likely the cause of the YouTube crashes. We will rely on a robust Audio Focus request instead.
+> [!NOTE]
+> I will be replacing the plain text "Frictionizer" title in the main screen's toolbar with the official wordmark logo, matching the branding seen in the countdown overlay.
+
+> [!IMPORTANT]
+> Since no signing key is configured in the project, the "release" APK will be unsigned. For testing purposes, I will also provide the debug APK which is ready to install immediately.
 
 ## Proposed Changes
 
-### Accessibility Service
+### Main Screen (MainActivity)
 
-#### [MODIFY] [FrictionizerAccessibilityService.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/FrictionizerAccessibilityService.kt)
-- **Revert Audio Focus Level**: Change `AUDIOFOCUS_GAIN` back to `AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE`. This is a strong transient focus that tells other apps they must pause and cannot "duck" (lower volume).
-- **Remove Key Injection**: Delete the `dispatchMediaKeyEvent` logic that was attempting to force a pause via system keys.
-- **Update Audio Attributes**: Use `USAGE_ASSISTANCE_SONIFICATION` which is appropriate for system-level overlays and highly likely to trigger pauses in media players.
+#### [MODIFY] [MainActivity.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/MainActivity.kt)
+- Update the `WindowInsetsListener` to apply the top system bar inset to the root view instead of just the ScrollView. This prevents the Toolbar from being obscured by the status bar.
+
+#### [MODIFY] [activity_main.xml](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/res/layout/activity_main.xml)
+- Add `android:id="@+id/main_root"` to the top-level `LinearLayout`.
+- Remove `app:title="Frictionizer"` from the `Toolbar`.
+- Add a custom `ImageView` inside the `Toolbar` to display `@drawable/frictionizer_wordmark`.
+
+### Other Screens
+
+#### [MODIFY] [SettingsActivity.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/SettingsActivity.kt)
+- Ensure top insets are handled consistently (already appears to be done, but will verify).
 
 ## Verification Plan
 
+### Automated Tests
+- Run `gradlew assembleDebug` to ensure the project compiles with the new layout changes.
+
 ### Manual Verification
-1. Play a video or "Short" in the YouTube app.
-2. Trigger the Frictionizer overlay by opening a monitored app.
-3. Verify that YouTube pauses immediately.
-4. Verify that YouTube **does not crash** and can be resumed normally after the overlay is dismissed.
-5. Test with other media apps (e.g., Spotify, Instagram) to ensure consistent behavior.
+- Deploy to the device and verify:
+    - The Toolbar on the main screen is fully visible below the status bar.
+    - The Frictionizer logo appears in the Toolbar instead of plain text.
+    - The app still functions correctly after these layout changes.
+
+### Build and Package
+- Run `gradlew assembleRelease` to generate the release APK.
+- Run `gradlew assembleDebug` to generate the debug APK.
+- Commit all changes to git.

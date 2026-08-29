@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.frictionizer.app-mergeReleaseResources-39:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/Users/horse/.gradle/caches/8.10.2/transforms/6288111d62aa5bda755821674ab22be5/transformed/appcompat-1.6.1/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

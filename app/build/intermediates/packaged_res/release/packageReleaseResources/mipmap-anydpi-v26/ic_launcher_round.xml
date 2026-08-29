@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- White background — matches logo's own background colour -->
+    <background android:drawable="@color/ic_launcher_background" />
+    <!-- Foreground: logo with transparency, scaled to fill adaptive canvas -->
+    <foreground android:drawable="@drawable/ic_launcher_foreground_scaled" />
+</adaptive-icon>

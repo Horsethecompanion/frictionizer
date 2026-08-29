@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/overlay_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/scrim"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        app:cardBackgroundColor="@color/overlay_surface"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="40dp"
+        app:cardMaxElevation="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="28dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <!-- Full Wordmark Logo -->
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/frictionizer_wordmark"
+                    android:scaleType="fitStart"
+                    android:contentDescription="Frictionizer" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_opening_app"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Opening App"
+                        android:textColor="@color/overlay_text_muted"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Countdown ring -->
+                <FrameLayout
+                    android:layout_width="52dp"
+                    android:layout_height="52dp">
+
+                    <ProgressBar
+                        android:id="@+id/countdown_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:progressDrawable="@drawable/countdown_ring_track"
+                        android:progress="100"
+                        android:rotation="-90"
+                        android:indeterminate="false" />
+
+                    <TextView
+                        android:id="@+id/tv_countdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/overlay_primary"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="…" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What are you doing?"
+                android:textColor="@color/overlay_text"
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="20dp" />
+
+            <LinearLayout
+                android:id="@+id/activities_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_waiting_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose once the countdown completes…"
+                android:textColor="@color/overlay_text_muted"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>
