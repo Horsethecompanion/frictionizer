@@ -10,5 +10,9 @@
     - `[x]` Update `grabAudioFocus` and add media pause keyevent in `FrictionizerAccessibilityService`
 - `[x]` Adjust App Icon Whitespace
     - `[x]` Scale logo in `ic_launcher_foreground.xml` to 80%
-- `[ ]` Verification
-    - `[ ]` Build and manual check of each fix
+- `[x]` Refine Media Pausing (Fix YouTube Crash)
+    - `[x]` Update `grabAudioFocus` to use `AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE`
+    - `[x]` Remove `dispatchMediaKeyEvent` logic
+    - `[x]` Change `AudioAttributes` usage to `USAGE_ASSISTANCE_SONIFICATION`
+- `[x]` Verification
+    - `[x]` Build and manual check of each fix

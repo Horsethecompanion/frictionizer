@@ -225,10 +225,10 @@ class FrictionizerAccessibilityService : AccessibilityService() {
     @Suppress("DEPRECATION")
     private fun grabAudioFocus() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val req = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN) // Stronger GAIN instead of TRANSIENT
+            val req = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE)
                 .setAudioAttributes(
                     AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
                         .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                         .build()
                 )
@@ -238,16 +238,9 @@ class FrictionizerAccessibilityService : AccessibilityService() {
             audioFocusRequest = req
         } else {
             audioManager?.requestAudioFocus(
-                { }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN
+                { }, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE
             )
         }
-        
-        // Force media pause via key event for stubborn apps like YouTube Shorts
-        handler.postDelayed({
-            val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-            am.dispatchMediaKeyEvent(android.view.KeyEvent(android.view.KeyEvent.ACTION_DOWN, android.view.KeyEvent.KEYCODE_MEDIA_PAUSE))
-            am.dispatchMediaKeyEvent(android.view.KeyEvent(android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_MEDIA_PAUSE))
-        }, 100)
     }
 
     @Suppress("DEPRECATION")

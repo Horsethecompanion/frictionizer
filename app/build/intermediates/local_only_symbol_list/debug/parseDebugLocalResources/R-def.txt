@@ -37,6 +37,7 @@ drawable frictionizer_wordmark
 drawable frictionizer_wordmark_large
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_launcher_foreground_scaled
 drawable ic_pause_bars
 drawable logo_frictionizer
 drawable search_bg

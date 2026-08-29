@@ -14,8 +14,8 @@ I have implemented the requested UI improvements, animation updates, and media p
 - **Smooth Fade-out:** The overlay now fades out over **1 second** when an activity is selected, providing a much smoother transition back to the target app.
 
 ### YouTube Shorts & Media Pausing
-- **Stronger Audio Focus:** Changed the focus request to `AUDIOFOCUS_GAIN` to signal a permanent pause to other apps.
-- **Forced Pause Event:** Added a media key event dispatch (`KEYCODE_MEDIA_PAUSE`) specifically to catch stubborn apps like YouTube Shorts that might ignore standard audio focus changes.
+- **Safer Pausing Logic**: Switched to `AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE` and `USAGE_ASSISTANCE_SONIFICATION`. This is a standard but authoritative way to pause background media without causing app crashes.
+- **Removed Aggressive Key Injection**: Deleted the media key injection code that was causing YouTube to crash in the background.
 
 ### App Icon Adjustment
 - **Better Fit:** Scaled the foreground logo to **80%** of its original size within the adaptive icon canvas. This prevents the stylised "F" from being cropped on devices that use circular icon masks.
