@@ -1,7 +1,10 @@
 package com.frictionizer.app
 
 import android.accessibilityservice.AccessibilityService
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.PixelFormat
 import android.media.AudioAttributes
@@ -44,6 +47,14 @@ class FrictionizerAccessibilityService : AccessibilityService() {
     private var lastForegroundPkg: String? = null
     private var countdownRunnable: Runnable? = null
 
+    private val screenOffReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == Intent.ACTION_SCREEN_OFF) {
+                dismissOverlay(null)
+            }
+        }
+    }
+
     companion object {
         private const val GRACE_PERIOD_MS = 180_000L
     }
@@ -52,6 +63,8 @@ class FrictionizerAccessibilityService : AccessibilityService() {
         super.onServiceConnected()
         windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        
+        registerReceiver(screenOffReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
@@ -159,6 +172,12 @@ class FrictionizerAccessibilityService : AccessibilityService() {
             activityButtons.add(btn)
         }
 
+        // Exit button (Safety Valve)
+        view.findViewById<View>(R.id.btn_exit_friction)?.setOnClickListener {
+            performGlobalAction(GLOBAL_ACTION_HOME)
+            dismissOverlay(null)
+        }
+
         // Countdown
         val totalMs = countdownSecs * 1000L
         val startTime = System.currentTimeMillis()
@@ -192,7 +211,7 @@ class FrictionizerAccessibilityService : AccessibilityService() {
 
         val wmParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT, // Physical clearance of nav/status bars
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
                     WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
@@ -308,6 +327,7 @@ class FrictionizerAccessibilityService : AccessibilityService() {
 
     override fun onInterrupt() {
         releaseAudioFocus()
+        try { unregisterReceiver(screenOffReceiver) } catch (e: Exception) {}
         overlayView?.let { try { windowManager?.removeView(it) } catch (e: Exception) {} }
         overlayView = null
         sessionStartTimes.keys.toList().forEach { endSession(it) }
@@ -316,6 +336,7 @@ class FrictionizerAccessibilityService : AccessibilityService() {
     override fun onDestroy() {
         super.onDestroy()
         releaseAudioFocus()
+        try { unregisterReceiver(screenOffReceiver) } catch (e: Exception) {}
         overlayView?.let { try { windowManager?.removeView(it) } catch (e: Exception) {} }
         overlayView = null
         sessionStartTimes.keys.toList().forEach { endSession(it) }

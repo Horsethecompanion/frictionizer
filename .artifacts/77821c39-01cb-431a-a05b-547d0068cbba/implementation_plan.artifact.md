@@ -1,39 +1,48 @@
-# Final Stability and Navigation Restore
+# Final Navigation and Stability Fix (Take 3)
 
-This plan addresses the remaining navigation issues and the accidental dismissal of the overlay during system events (volume/charging). We are reverting to a more standard "non-modal" overlay pattern that was more reliable in previous iterations.
+This plan addresses the persistent navigation issues and the "lock screen" bug. We will use a more robust window management strategy and add a "safety valve" to the UI to ensure the user can always exit the friction loop.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> I will be using `FLAG_NOT_FOCUSABLE` and `FLAG_NOT_TOUCH_MODAL` on a `MATCH_PARENT` window. To ensure navigation and notifications work, the root of the overlay will be set to **not clickable**. This allows Android to pass touches through the empty space of our window to the system UI and the app underneath.
+> I am adding a "Close & Exit" button to the pop-up card. This button will use the Accessibility Service to perform a "Home" action, guaranteed to take the user back to their launcher regardless of system gestures.
 
 > [!NOTE]
-> I am replacing the hardcoded system package list with a "Real App" check. The overlay will only dismiss if the user switches to another app that can actually be launched. System overlays, volume bars, and charging alerts will be ignored, keeping the friction stable.
+> The overlay window will be shrunken to `WRAP_CONTENT` for both dimensions and shifted slightly up from the bottom. This physically leaves the navigation and status bar areas untouched by our window, which should resolve the gesture blocking on your Pixel.
 
 ## Proposed Changes
 
-### Accessibility Service (Stability & Touch)
+### Accessibility Service (Logic & Window)
 
 #### [MODIFY] [FrictionizerAccessibilityService.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/FrictionizerAccessibilityService.kt)
-- **Robust App Switching**: Implement `isRealApp(pkg)` check using `packageManager.getLaunchIntentForPackage`. This prevents accidental dismissal from system events.
-- **Full Screen Passthrough**:
-    - Set window size back to `MATCH_PARENT` for both width and height.
-    - Set flags: `FLAG_NOT_FOCUSABLE`, `FLAG_NOT_TOUCH_MODAL`, `FLAG_LAYOUT_IN_SCREEN`, `FLAG_LAYOUT_NO_LIMITS`.
-    - Use `FLAG_DIM_BEHIND` with a moderate `dimAmount` (0.7f).
-- **Event Filtering**: Ensure `TYPE_WINDOW_STATE_CHANGED` logic correctly handles switches back and forth between system overlays and the monitored app.
+- **Screen Off Detection**: Register a `BroadcastReceiver` for `ACTION_SCREEN_OFF` to instantly dismiss the overlay when the phone is locked.
+- **Physical Window Sizing**:
+    - Set window `width` and `height` to `WRAP_CONTENT`.
+    - Use `FLAG_NOT_FOCUSABLE` and `FLAG_NOT_TOUCH_MODAL`.
+    - Set `gravity = Gravity.CENTER` but add a `y` offset if needed (will try pure center first).
+- **Refined Dismissal**:
+    - Keep the "Real App" check but ensure it doesn't block the launcher.
+    - If a switch to `com.android.systemui` is detected, we will now check if the screen is locked/off and dismiss accordingly.
+
+### Overlay UI (Safety Valve)
 
 #### [MODIFY] [overlay_friction.xml](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/res/layout/overlay_friction.xml)
-- **Non-Clickable Root**: Ensure the root `FrameLayout` is `match_parent` but `android:clickable="false"`.
-- **Card Sizing**: Re-center the `CardView` within the full-screen container.
+- **Add Exit Button**: Add a subtle "Nevermind, go home" text button at the bottom of the card. This gives users a high-visibility way to exit without needing to wait for the countdown or fight with gestures.
+- **Root Sizing**: Set root container to `wrap_content`.
 
 ## Verification Plan
 
 ### Manual Verification
-1. **Notifications**: While the overlay is visible, swipe down from the very top. Verify the notification shade opens perfectly.
-2. **Navigation Bar**: Tap the Back, Home, and Recents buttons. Verify they respond immediately.
-3. **Stability**: Change volume and plug in the charger. Verify the overlay **does not disappear**.
-4. **App Switch**: Switch to another app (e.g., Settings or Calculator). Verify the overlay dismisses.
-5. **Return**: Return to the monitored app and verify the overlay re-appears (unless unlocked).
+1. **Navigation**:
+    - Verify swiping from the edges for "Back" works.
+    - Verify swiping from the bottom for "Home" works.
+2. **Notifications**: Verify swiping down from the top works.
+3. **Locking**:
+    - Trigger the overlay.
+    - Press the power button to lock.
+    - Unlock the phone.
+    - Verify the overlay is **gone** (it should re-trigger if you open the app again).
+4. **Safety Valve**: Tap the "Exit" button on the card and verify you are taken to the Home screen immediately.
 
 ### Build and Package
 - Deploy to the connected Pixel device.

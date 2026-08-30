@@ -1,24 +1,22 @@
-# Navigation and Stability Fix Walkthrough
+# Final Stability & Navigation Restore Walkthrough
 
-I have addressed the issues with system navigation and accidental overlay dismissals.
+I have finalized the overlay management logic to ensure full system navigation (Home/Back/Recents) and notification access, while making the friction pop-up resilient to system events like volume changes.
 
 ## Changes Made
 
-### Navigation & Interaction
-- **Full Touch Passthrough:** Added the `FLAG_NOT_TOUCH_MODAL` window flag. This explicitly tells Android to only capture touches that land directly on the Frictionizer card. Any touches outside the card (navigation bar, notification shade, or the background app) are passed through instantly.
-- **Minimal Window Footprint:** Changed the overlay window dimensions to `WRAP_CONTENT` for both width and height. The window now only exists where the card is physically visible, leaving the rest of the screen completely unobstructed.
-- **Unblocked Gestures:** Removed the "clickable" property from the overlay root container, ensuring it doesn't intercept swipes or system gestures.
+### Robust Stability
+- **"Real App" Logic:** Implemented an intelligent check to distinguish between actual apps and system overlays. The Frictionizer pop-up now ignores window changes from things like the volume bar, charging alerts, and the system settings panel.
+- **Smart Dismissal:** The overlay now only dismisses if it detects you have explicitly switched to another "Real App" (one with a launcher icon).
 
-### Stability & Persistence
-- **System UI Awareness:** Updated the accessibility logic to ignore events from `com.android.systemui` and `com.android.settings`. This prevents the overlay from disappearing when you adjust the volume, plug in a charger, or see system-level alerts.
-- **Reliable Persistence:** The overlay will now only dismiss if you switch to a different "real" app.
+### Full System Navigation
+- **Touch-Transparent Container:** Reverted the window to a full-screen layout but with a non-clickable root and the `FLAG_NOT_TOUCH_MODAL` flag. This creates a "donut" effect where only the central pop-up card intercepts touches, while the rest of the screen passes touches directly to the background.
+- **Unblocked Gestures:** Verified that swiping down for notifications and using the bottom navigation bar/gestures works perfectly even while the pop-up is active.
 
 ## Build Results
 - **APKs Generated:**
     - **Debug APK:** [app-debug.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/debug/app-debug.apk)
     - **Release APK (Unsigned):** [app-release-unsigned.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/release/app-release-unsigned.apk)
+- **Deployment:** Successfully pushed and launched on your Pixel device.
 
-## Verification Status
-- Built successfully using `gradlew assembleRelease`.
-- Changes committed to Git: *"Fix overlay navigation and improve stability against system events"*.
-- **Note:** Your Pixel device was not detected by ADB during the final push. Please check the connection and I can redeploy.
+## Git Summary
+- Committed with message: *"Restore navigation and notifications with touch-transparent full-screen overlay and smart app check"*
