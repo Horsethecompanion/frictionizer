@@ -1,44 +1,44 @@
-# UI Refinement and Release Preparation
+# Navigation Fix and UI Polish
 
-This plan addresses UI layout issues on the main screen and branding updates, followed by building a shareable APK.
+This plan addresses the issue where the overlay blocks system navigation, improves the dismissal logic when switching apps, and polishes the main dashboard UI.
 
 ## User Review Required
 
-> [!NOTE]
-> I will be replacing the plain text "Frictionizer" title in the main screen's toolbar with the official wordmark logo, matching the branding seen in the countdown overlay.
-
 > [!IMPORTANT]
-> Since no signing key is configured in the project, the "release" APK will be unsigned. For testing purposes, I will also provide the debug APK which is ready to install immediately.
+> The overlay will now be non-focusable by default. This allows the system navigation (Back/Home/Recents) to function even when the countdown is active. If you hit "Back", the underlying app will receive the event and likely close, which will then trigger the overlay to dismiss.
 
 ## Proposed Changes
 
-### Main Screen (MainActivity)
+### Accessibility Service (Navigation Fix)
+
+#### [MODIFY] [FrictionizerAccessibilityService.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/FrictionizerAccessibilityService.kt)
+- **Non-Focusable Overlay**: Add `FLAG_NOT_FOCUSABLE` to the overlay's WindowManager parameters. This ensures system buttons and gestures work.
+- **Dismiss on App Switch**: Update `onAccessibilityEvent` to dismiss the overlay if the user switches to a non-monitored app (like the Home screen).
+- **Restart Friction on Return**: Ensure that switching back to a monitored app re-triggers the friction (unless within the grace period).
+- **Refined Dismissal**: Create a helper to dismiss the overlay without adding the current app to the "recently dismissed" list if the user simply navigated away.
+
+### Main Dashboard (UI Polish)
 
 #### [MODIFY] [MainActivity.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/MainActivity.kt)
-- Update the `WindowInsetsListener` to apply the top system bar inset to the root view instead of just the ScrollView. This prevents the Toolbar from being obscured by the status bar.
+- **Hide Default Title**: Explicitly disable the ActionBar title display to ensure only the branding wordmark logo is visible in the toolbar.
+- **Additional Top Spacing**: Add an extra 8dp of padding on top of the system status bar inset to give the header more breathing room.
 
 #### [MODIFY] [activity_main.xml](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/res/layout/activity_main.xml)
-- Add `android:id="@+id/main_root"` to the top-level `LinearLayout`.
-- Remove `app:title="Frictionizer"` from the `Toolbar`.
-- Add a custom `ImageView` inside the `Toolbar` to display `@drawable/frictionizer_wordmark`.
-
-### Other Screens
-
-#### [MODIFY] [SettingsActivity.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/SettingsActivity.kt)
-- Ensure top insets are handled consistently (already appears to be done, but will verify).
+- **Logo Alignment**: Ensure the logo in the toolbar is vertically centered and has proper margins.
 
 ## Verification Plan
 
-### Automated Tests
-- Run `gradlew assembleDebug` to ensure the project compiles with the new layout changes.
-
 ### Manual Verification
-- Deploy to the device and verify:
-    - The Toolbar on the main screen is fully visible below the status bar.
-    - The Frictionizer logo appears in the Toolbar instead of plain text.
-    - The app still functions correctly after these layout changes.
+1. **Navigation:**
+    - Open a monitored app (e.g., YouTube).
+    - While the countdown is active, hit the **Home** button or use the **Back** gesture.
+    - Verify that the app closes/minimizes and the overlay disappears smoothly.
+2. **UI Polish:**
+    - Open the Frictionizer app.
+    - Verify that the "Frictionizer" logo in the toolbar is not overlapping with the status bar clock/icons.
+    - Verify that there is no plain text "Frictionizer" title visible (only the logo).
 
 ### Build and Package
-- Run `gradlew assembleRelease` to generate the release APK.
-- Run `gradlew assembleDebug` to generate the debug APK.
+- Deploy to the connected Pixel device for a final check.
+- Run `gradlew assembleRelease` to generate the final release APK.
 - Commit all changes to git.

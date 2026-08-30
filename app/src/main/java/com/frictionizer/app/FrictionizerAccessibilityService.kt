@@ -84,6 +84,9 @@ class FrictionizerAccessibilityService : AccessibilityService() {
                 if (sessionStartTimes.containsKey(pkg)) relock(pkg)
                 if (pkg !in recentlyDismissed) showOverlay(pkg)
             }
+        } else {
+            // Switched to a non-monitored app - dismiss any active overlay
+            dismissOverlay(null) // null pkg means don't mark as "recently dismissed"
         }
 
         val expired = lastExitTimes.filter { (p, exit) ->
@@ -187,7 +190,8 @@ class FrictionizerAccessibilityService : AccessibilityService() {
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or 
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, // Allow system nav to work
             PixelFormat.TRANSLUCENT
         ).also { it.gravity = Gravity.CENTER }
 
@@ -206,18 +210,22 @@ class FrictionizerAccessibilityService : AccessibilityService() {
         }
     }
 
-    private fun dismissOverlay(pkg: String) {
+    private fun dismissOverlay(pkg: String?) {
         countdownRunnable?.let { handler.removeCallbacks(it) }
         countdownRunnable = null
         
-        overlayView?.animate()?.alpha(0f)?.setDuration(1000)?.withEndAction {
-            overlayView?.let { try { windowManager?.removeView(it) } catch (e: Exception) { } }
-            overlayView = null
-            releaseAudioFocus()
-        }?.start()
+        val targetView = overlayView
+        overlayView = null // Immediate clear to prevent multiple calls
         
-        recentlyDismissed.add(pkg)
-        handler.postDelayed({ recentlyDismissed.remove(pkg) }, 2000)
+        targetView?.animate()?.alpha(0f)?.setDuration(1000)?.withEndAction {
+            targetView.let { try { windowManager?.removeView(it) } catch (e: Exception) { } }
+            releaseAudioFocus()
+        }?.start() ?: releaseAudioFocus() // Ensure focus is released even if view is missing
+        
+        if (pkg != null) {
+            recentlyDismissed.add(pkg)
+            handler.postDelayed({ recentlyDismissed.remove(pkg) }, 2000)
+        }
     }
 
     // ── Audio focus ───────────────────────────────────────────────────────────

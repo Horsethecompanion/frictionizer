@@ -23,11 +23,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Use wordmark logo only
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.mainRoot) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.updatePadding(
-                top = systemBars.top,
+                top = systemBars.top + 24, // Extra 8dp (24px approx) for breathing room
                 bottom = systemBars.bottom
             )
             insets

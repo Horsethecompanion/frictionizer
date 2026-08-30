@@ -1,15 +1,12 @@
-# UI Refinement and Release Task List
+# Navigation and UI Polish Task List
 
-- `[/]` Fix Main Screen UI & Branding
-    - `[ ]` Update `activity_main.xml` layout (add root ID, replace Toolbar title with Logo)
-    - `[ ]` Update `MainActivity.kt` to apply insets to the root view
-- `[ ]` Verify Insets in Other Screens
-    - `[ ]` Check `SettingsActivity.kt`
-    - `[ ]` Check `AppSelectionActivity.kt`
-    - `[ ]` Check `ActivitiesActivity.kt`
-    - `[ ]` Check `StatsActivity.kt`
-- `[ ]` Build & Package
-    - `[ ]` Build Debug APK
+- `[x]` Fix Overlay Navigation & App Switching
+    - `[x]` Update `FrictionizerAccessibilityService.kt`: Add `FLAG_NOT_FOCUSABLE`
+    - `[x]` Update `FrictionizerAccessibilityService.kt`: Auto-dismiss when navigating away from monitored app
+- `[x]` UI Polish & Branding
+    - `[x]` Update `MainActivity.kt`: Hide ActionBar title
+    - `[x]` Update `MainActivity.kt`: Add extra top padding for status bar safety
+- `[ ]` Verification & Release
+    - `[ ]` Deploy to Pixel device
     - `[ ]` Build Release APK
-- `[ ]` Git Commit
-    - `[ ]` Commit all changes
+    - `[ ]` Commit all changes to Git
