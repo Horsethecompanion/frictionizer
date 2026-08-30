@@ -85,10 +85,10 @@ class FrictionizerAccessibilityService : AccessibilityService() {
                 if (pkg !in recentlyDismissed) showOverlay(pkg)
             }
         } else {
-            // Switched to a non-monitored app. 
-            // IGNORE system UI, settings, and other transient overlays to prevent accidental dismissal.
-            val systemPkgs = setOf("com.android.systemui", "com.android.settings", "android")
-            if (pkg !in systemPkgs) {
+            // Switched away from monitored app. 
+            // Only dismiss if the user has switched to a "Real App" (launcher activity).
+            // This prevents accidental dismissal from system UI, charging, volume, etc.
+            if (isRealApp(pkg)) {
                 dismissOverlay(null)
             }
         }
@@ -191,16 +191,16 @@ class FrictionizerAccessibilityService : AccessibilityService() {
         handler.post(tickRunnable)
 
         val wmParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT, // Tight width
-            WindowManager.LayoutParams.WRAP_CONTENT, // Tight height
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or // Pass touches outside card
-                    WindowManager.LayoutParams.FLAG_DIM_BEHIND, // Use system dimming
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND,
             PixelFormat.TRANSLUCENT
         ).also { 
             it.gravity = Gravity.CENTER
-            it.dimAmount = 0.8f 
+            it.dimAmount = 0.7f 
         }
 
         try {
@@ -216,6 +216,11 @@ class FrictionizerAccessibilityService : AccessibilityService() {
         } catch (e: Exception) {
             Log.e("Frictionizer", "Could not show overlay", e)
         }
+    }
+
+    private fun isRealApp(pkg: String): Boolean {
+        if (pkg == "com.android.systemui" || pkg == "android" || pkg == packageName) return false
+        return packageManager.getLaunchIntentForPackage(pkg) != null
     }
 
     private fun dismissOverlay(pkg: String?) {

@@ -1,22 +1,24 @@
-# Final Navigation Fix and UI Polish Walkthrough
+# Navigation and Stability Fix Walkthrough
 
-I have addressed the blocked system navigation buttons and further refined the main dashboard spacing.
+I have addressed the issues with system navigation and accidental overlay dismissals.
 
 ## Changes Made
 
-### System Navigation Fix
-- **Physical Boundary Fix:** Changed the overlay window from `MATCH_PARENT` to `WRAP_CONTENT` height. This physically removes the window from the bottom navigation area, allowing buttons and gestures to work perfectly.
-- **System Dimming:** Replaced the manual background color with the OS-level `FLAG_DIM_BEHIND`. This provides the same darkened effect but allows touch events outside the central pop-up to reach the system and the underlying app.
-- **Clean Sizing:** Updated `overlay_friction.xml` to use `wrap_content` for height and removed the manual scrim background.
+### Navigation & Interaction
+- **Full Touch Passthrough:** Added the `FLAG_NOT_TOUCH_MODAL` window flag. This explicitly tells Android to only capture touches that land directly on the Frictionizer card. Any touches outside the card (navigation bar, notification shade, or the background app) are passed through instantly.
+- **Minimal Window Footprint:** Changed the overlay window dimensions to `WRAP_CONTENT` for both width and height. The window now only exists where the card is physically visible, leaving the rest of the screen completely unobstructed.
+- **Unblocked Gestures:** Removed the "clickable" property from the overlay root container, ensuring it doesn't intercept swipes or system gestures.
 
-### UI Polish
-- **Branding Safety:** Increased the top padding on the main screen dashboard. This ensures the Frictionizer logo is perfectly centered and safely clear of the status bar clock and notification icons on all devices.
+### Stability & Persistence
+- **System UI Awareness:** Updated the accessibility logic to ignore events from `com.android.systemui` and `com.android.settings`. This prevents the overlay from disappearing when you adjust the volume, plug in a charger, or see system-level alerts.
+- **Reliable Persistence:** The overlay will now only dismiss if you switch to a different "real" app.
 
 ## Build Results
-- **Fresh Builds:** Generated updated Debug and Release APKs.
+- **APKs Generated:**
     - **Debug APK:** [app-debug.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/debug/app-debug.apk)
-    - **Release APK:** [app-release-unsigned.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/release/app-release-unsigned.apk)
-- **Deployment:** The latest version has been deployed to your connected device.
+    - **Release APK (Unsigned):** [app-release-unsigned.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/release/app-release-unsigned.apk)
 
-## Git Summary
-- Committed with message: *"Fix overlay blocking system navigation and further increase main dashboard top padding"*
+## Verification Status
+- Built successfully using `gradlew assembleRelease`.
+- Changes committed to Git: *"Fix overlay navigation and improve stability against system events"*.
+- **Note:** Your Pixel device was not detected by ADB during the final push. Please check the connection and I can redeploy.

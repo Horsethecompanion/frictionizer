@@ -1,40 +1,41 @@
-# Fix Overlay Navigation and Persistence Issues
+# Final Stability and Navigation Restore
 
-This plan addresses the regressions where the overlay blocks system navigation and dismisses incorrectly during system events like volume changes or charging.
+This plan addresses the remaining navigation issues and the accidental dismissal of the overlay during system events (volume/charging). We are reverting to a more standard "non-modal" overlay pattern that was more reliable in previous iterations.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> I will be reverting the logic that dismisses the overlay on *any* non-monitored app switch. Instead, the overlay will only be dismissed if the user explicitly switches to a different "real" app (e.g., not the System UI). This will fix the issue where the pop-up disappears when plugging in a charger or adjusting volume.
+> I will be using `FLAG_NOT_FOCUSABLE` and `FLAG_NOT_TOUCH_MODAL` on a `MATCH_PARENT` window. To ensure navigation and notifications work, the root of the overlay will be set to **not clickable**. This allows Android to pass touches through the empty space of our window to the system UI and the app underneath.
 
 > [!NOTE]
-> To fully unblock the navigation bar and notification shade, I will use `FLAG_NOT_TOUCH_MODAL`. This tells Android to pass any touch events that occur *outside* our pop-up card through to the apps and system bars underneath.
+> I am replacing the hardcoded system package list with a "Real App" check. The overlay will only dismiss if the user switches to another app that can actually be launched. System overlays, volume bars, and charging alerts will be ignored, keeping the friction stable.
 
 ## Proposed Changes
 
-### Accessibility Service (Stability & Navigation)
+### Accessibility Service (Stability & Touch)
 
 #### [MODIFY] [FrictionizerAccessibilityService.kt](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/java/com/frictionizer/app/FrictionizerAccessibilityService.kt)
-- **Safe Package Switching**: Update `onAccessibilityEvent` to ignore "System UI" and other background system packages. This ensures that transient system overlays (volume, battery alerts) don't accidentally dismiss the Frictionizer overlay.
-- **Window Size Optimization**: Change the `WindowManager` width to `WRAP_CONTENT` in addition to height. This makes the "hit box" of the window as small as possible.
-- **Improved Window Flags**:
-    - Add `FLAG_NOT_TOUCH_MODAL` to allow touches outside the card to pass through.
-    - Keep `FLAG_NOT_FOCUSABLE` to allow the notification shade to expand.
-    - Remove `FLAG_LAYOUT_IN_SCREEN` to ensure the window doesn't compete with the status/navigation bar areas.
+- **Robust App Switching**: Implement `isRealApp(pkg)` check using `packageManager.getLaunchIntentForPackage`. This prevents accidental dismissal from system events.
+- **Full Screen Passthrough**:
+    - Set window size back to `MATCH_PARENT` for both width and height.
+    - Set flags: `FLAG_NOT_FOCUSABLE`, `FLAG_NOT_TOUCH_MODAL`, `FLAG_LAYOUT_IN_SCREEN`, `FLAG_LAYOUT_NO_LIMITS`.
+    - Use `FLAG_DIM_BEHIND` with a moderate `dimAmount` (0.7f).
+- **Event Filtering**: Ensure `TYPE_WINDOW_STATE_CHANGED` logic correctly handles switches back and forth between system overlays and the monitored app.
 
 #### [MODIFY] [overlay_friction.xml](file:///Users/horse/AndroidStudioProjects/frictionizer/app/src/main/res/layout/overlay_friction.xml)
-- **Remove Clickable Root**: Remove `android:clickable="true"` and `android:focusable="true"` from the root `FrameLayout`. This prevents the overlay container from "eating" touches that should pass through to the background.
-- **Sizing**: Set the root container width to `wrap_content`.
+- **Non-Clickable Root**: Ensure the root `FrameLayout` is `match_parent` but `android:clickable="false"`.
+- **Card Sizing**: Re-center the `CardView` within the full-screen container.
 
 ## Verification Plan
 
 ### Manual Verification
-1. **System Events**: Open a monitored app, wait for the overlay, then plug/unplug the charger and adjust the volume. Verify the overlay **stays visible**.
-2. **Navigation Bar**: While the overlay is visible, use the Home, Back, and Recents buttons. Verify they work perfectly.
-3. **Notification Shade**: Swipe down from the top while the overlay is visible. Verify the notifications/settings panel opens correctly.
-4. **App Switching**: Navigate to a non-monitored app (e.g., Calculator). Verify the overlay disappears. Return to the monitored app and verify it re-appears.
+1. **Notifications**: While the overlay is visible, swipe down from the very top. Verify the notification shade opens perfectly.
+2. **Navigation Bar**: Tap the Back, Home, and Recents buttons. Verify they respond immediately.
+3. **Stability**: Change volume and plug in the charger. Verify the overlay **does not disappear**.
+4. **App Switch**: Switch to another app (e.g., Settings or Calculator). Verify the overlay dismisses.
+5. **Return**: Return to the monitored app and verify the overlay re-appears (unless unlocked).
 
 ### Build and Package
-- Deploy to the connected Pixel device for testing.
+- Deploy to the connected Pixel device.
 - Build the final Release APK.
 - Commit all changes to Git.
