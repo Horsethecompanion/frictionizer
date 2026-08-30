@@ -85,8 +85,12 @@ class FrictionizerAccessibilityService : AccessibilityService() {
                 if (pkg !in recentlyDismissed) showOverlay(pkg)
             }
         } else {
-            // Switched to a non-monitored app - dismiss any active overlay
-            dismissOverlay(null) // null pkg means don't mark as "recently dismissed"
+            // Switched to a non-monitored app. 
+            // IGNORE system UI, settings, and other transient overlays to prevent accidental dismissal.
+            val systemPkgs = setOf("com.android.systemui", "com.android.settings", "android")
+            if (pkg !in systemPkgs) {
+                dismissOverlay(null)
+            }
         }
 
         val expired = lastExitTimes.filter { (p, exit) ->
@@ -187,16 +191,16 @@ class FrictionizerAccessibilityService : AccessibilityService() {
         handler.post(tickRunnable)
 
         val wmParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT, // Don't block whole screen height
+            WindowManager.LayoutParams.WRAP_CONTENT, // Tight width
+            WindowManager.LayoutParams.WRAP_CONTENT, // Tight height
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or 
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or // Pass touches outside card
                     WindowManager.LayoutParams.FLAG_DIM_BEHIND, // Use system dimming
             PixelFormat.TRANSLUCENT
         ).also { 
             it.gravity = Gravity.CENTER
-            it.dimAmount = 0.8f // Darken background, allows touches outside to pass through
+            it.dimAmount = 0.8f 
         }
 
         try {
