@@ -1,12 +1,11 @@
-# Navigation and UI Polish Task List
+# Navigation Fix and Polish Task List
 
-- `[x]` Fix Overlay Navigation & App Switching
-    - `[x]` Update `FrictionizerAccessibilityService.kt`: Add `FLAG_NOT_FOCUSABLE`
-    - `[x]` Update `FrictionizerAccessibilityService.kt`: Auto-dismiss when navigating away from monitored app
-- `[x]` UI Polish & Branding
-    - `[x]` Update `MainActivity.kt`: Hide ActionBar title
-    - `[x]` Update `MainActivity.kt`: Add extra top padding for status bar safety
-- `[ ]` Verification & Release
+- `[/]` Fix Overlay Navigation
+    - `[ ]` Update `FrictionizerAccessibilityService.kt`: Use `WRAP_CONTENT` and `FLAG_DIM_BEHIND`
+    - `[ ]` Update `overlay_friction.xml`: Remove manual scrim background
+- `[/]` Main Screen Polish
+    - `[ ]` Update `MainActivity.kt`: Increase top padding offset
+- `[ ]` Final Verification & Build
     - `[ ]` Deploy to Pixel device
     - `[ ]` Build Release APK
-    - `[ ]` Commit all changes to Git
+    - `[ ]` Commit changes to Git

@@ -1,25 +1,25 @@
-# UI Refinement and Release Walkthrough
+# Final Navigation and UI Polish Walkthrough
 
-I have polished the main screen UI, applied branding updates, and prepared the final APKs for testing.
+I have implemented the final round of navigation improvements and UI refinements to ensure the app is ready for testers.
 
 ## Changes Made
 
-### Main Screen Branding & Layout
-- **Wordmark Integration:** Replaced the plain "Frictionizer" text in the toolbar with the stylised wordmark logo for a more premium look.
-- **Top Inset Fix:** Updated `MainActivity` to apply system bar insets to the root layout. This ensures the Toolbar is correctly positioned below the status bar and clock.
-- **Root View ID:** Added `main_root` ID to the top-level container for programmatic inset handling.
+### Navigation & Accessibility
+- **System Navigation Support:** The overlay is now non-focusable (`FLAG_NOT_FOCUSABLE`), allowing system gestures like "Back" and "Home" to work even while the countdown is active. This allows users to exit a monitored app immediately if they choose.
+- **Smart Dismissal:** Added logic to automatically dismiss the overlay if the user switches away from a monitored app (e.g., returning to the home screen). If the user returns to the app later, the friction will re-trigger as expected.
 
-### Screen Consistency
-- **Inset Verification:** Verified that all other screens (`Settings`, `App Selection`, `Activities`, `Stats`) correctly handle top insets to avoid overlapping with the system status bar.
+### Main Dashboard UI Polish
+- **Branding Update:** Replaced the plain "Frictionizer" toolbar title with the stylised wordmark logo.
+- **Safety Padding:** Added extra top padding to the main screen layout to ensure the header never overlaps with the system status bar, clock, or notification icons.
+- **Clean Interface:** Explicitly disabled the default ActionBar title display to focus entirely on the branding.
 
-### Build & Release
-- **Generated APKs:** Successfully built both Debug and Release variants.
-    - **Debug APK:** [app-debug.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/debug/app-debug.apk) (Ready for direct installation)
-    - **Release APK:** [app-release-unsigned.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/release/app-release-unsigned.apk) (Unsigned, for distribution)
+### Release Preparation
+- **New Builds:** Generated fresh Debug and Release APKs.
+    - **Debug APK:** [app-debug.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/debug/app-debug.apk)
+    - **Release APK (Unsigned):** [app-release-unsigned.apk](file:///Users/horse/AndroidStudioProjects/frictionizer/app/build/outputs/apk/release/app-release-unsigned.apk)
+- **Deployment:** Successfully pushed the latest version to your connected Pixel device.
 
 ## Verification Results
-- `gradlew assembleDebug assembleRelease` finished successfully.
-- Manual inspection of layouts confirms top-level containers are now respecting system window insets.
-
-## Git Summary
-- Committed with message: *"Fix main screen toolbar insets and replace text title with branding wordmark"*
+- **Manual Check:** Navigating away from YouTube while the overlay is visible now dismisses the overlay instantly and returns control to the system.
+- **Visual Check:** The dashboard logo is correctly positioned and safe from status bar overlap.
+- **Git Sync:** All final changes committed with message: *"Allow system navigation through overlay, auto-dismiss overlay on app switch, and polish main dashboard UI"*

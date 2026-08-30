@@ -188,12 +188,16 @@ class FrictionizerAccessibilityService : AccessibilityService() {
 
         val wmParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT, // Don't block whole screen height
             WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
             WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or 
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, // Allow system nav to work
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_DIM_BEHIND, // Use system dimming
             PixelFormat.TRANSLUCENT
-        ).also { it.gravity = Gravity.CENTER }
+        ).also { 
+            it.gravity = Gravity.CENTER
+            it.dimAmount = 0.8f // Darken background, allows touches outside to pass through
+        }
 
         try {
             windowManager?.addView(view, wmParams)

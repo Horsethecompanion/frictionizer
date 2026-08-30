@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.mainRoot) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.updatePadding(
-                top = systemBars.top + 24, // Extra 8dp (24px approx) for breathing room
+                top = systemBars.top + 48, // Further increase for status bar safety
                 bottom = systemBars.bottom
             )
             insets
