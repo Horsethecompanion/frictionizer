@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frictionizer — A little friction is good for you</title>
+  <meta name="description" content="Frictionizer adds a brief pause before you open time-wasting apps. One question. Five seconds. A better habit." />
+
+  <!-- Favicon: inline the orange F using a data URI canvas -->
+  <link rel="icon" type="image/png" href="frictionizer_logo.png" />
+
+  <style>
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --orange:      #F26E21;
+      --orange-dim:  #C45618;
+      --orange-glow: rgba(242,110,33,0.15);
+      --blue:        #4AA8E0;
+      --blue-dark:   #2D7BB0;
+      --ink:         #1A1C22;
+      --ink-mid:     #3D404A;
+      --ink-muted:   #6B6F7C;
+      --rule:        #E4E6ED;
+      --bg:          #F8F8FA;
+      --white:       #FFFFFF;
+      --radius:      14px;
+      --step-size:   40px;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--blue-dark); }
+    a:hover { color: var(--orange); }
+
+    /* ── Layout helpers ─────────────────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 72px 0; }
+    .section + .section { border-top: 1px solid var(--rule); }
+
+    /* ── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,248,250,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 56px;
+    }
+    nav img.nav-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+    }
+    nav .nav-wordmark {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      flex: 1;
+    }
+    nav a.nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    nav a.nav-link:hover { background: var(--orange-glow); color: var(--orange); }
+    nav a.nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--orange);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    nav a.nav-cta:hover { background: var(--orange-dim); color: var(--white); }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
+    }
+    .hero-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 24px;
+      margin: 0 auto 28px;
+      box-shadow: 0 12px 40px rgba(242,110,33,0.25), 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+    .hero p.lead {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--ink-mid);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(242,110,33,0.35);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-download:hover {
+      background: var(--orange-dim);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(242,110,33,0.4);
+    }
+    .btn-download svg { flex-shrink: 0; }
+    .hero .small-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* ── Intro strip ────────────────────────────────────────── */
+    .intro-strip {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .intro-strip blockquote {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 600;
+      color: var(--ink);
+      font-style: italic;
+      letter-spacing: -0.01em;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .intro-strip blockquote span {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ── How it works ───────────────────────────────────────── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--ink-muted);
+      margin-bottom: 40px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* Flow steps */
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .flow::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--step-size) / 2 - 1px);
+      top: var(--step-size);
+      bottom: var(--step-size);
+      width: 2px;
+      background: linear-gradient(to bottom, var(--orange) 0%, var(--blue) 100%);
+      opacity: 0.25;
+    }
+    .flow-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 16px 0;
+    }
+    .flow-num {
+      width: var(--step-size);
+      height: var(--step-size);
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step:last-child .flow-num { border-color: var(--blue); color: var(--blue); }
+    .flow-body h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--ink);
+      padding-top: 9px;
+    }
+    .flow-body p { font-size: 14px; color: var(--ink-muted); line-height: 1.55; }
+
+    /* ── Countdown section ──────────────────────────────────── */
+    .frog-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+    .frog-emoji { font-size: 52px; flex-shrink: 0; line-height: 1; }
+    .frog-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .frog-card p { font-size: 14px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 12px; }
+    .day-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+    .day-table th {
+      text-align: left;
+      font-weight: 600;
+      color: var(--ink-muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .day-table td { padding: 6px 8px; color: var(--ink-mid); }
+    .day-table tr:last-child td { color: var(--orange); font-weight: 600; }
+
+    /* ── Install section ────────────────────────────────────── */
+    .install-steps { counter-reset: install-counter; }
+    .install-step {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 24px 24px 24px 72px;
+      margin-bottom: 12px;
+      position: relative;
+      transition: border-color 0.15s;
+    }
+    .install-step:hover { border-color: var(--orange); }
+    .install-step::before {
+      counter-increment: install-counter;
+      content: counter(install-counter);
+      position: absolute;
+      left: 20px;
+      top: 22px;
+      width: 34px;
+      height: 34px;
+      background: var(--orange-glow);
+      border-radius: 50%;
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Cheat: use pseudo + actual flex for the number */
+    .install-step { display: flex; flex-direction: column; padding-left: 72px; }
+    .step-num {
+      position: absolute;
+      left: 20px;
+      top: 22px;
+      width: 34px;
+      height: 34px;
+      background: var(--orange-glow);
+      border-radius: 50%;
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .install-step h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .install-step p, .install-step ul {
+      font-size: 14px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+    .install-step ul { padding-left: 18px; }
+    .install-step ul li { margin-bottom: 4px; }
+    .install-step .tag {
+      display: inline-block;
+      background: var(--orange-glow);
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .install-step .note {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #F0F6FF;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: var(--blue-dark);
+    }
+
+    /* ── Permissions ────────────────────────────────────────── */
+    .perms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .perm-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .perm-card .perm-icon { font-size: 24px; margin-bottom: 10px; }
+    .perm-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .perm-card p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+    .perm-privacy {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink-mid);
+      font-weight: 500;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+    }
+    .perm-privacy span.shield { font-size: 20px; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 0;
+      font-size: 13px;
+    }
+    footer .container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer img { width: 26px; height: 26px; border-radius: 6px; opacity: 0.85; }
+    footer span { flex: 1; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: var(--orange); }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .perms-grid { grid-template-columns: 1fr; }
+      .frog-card { flex-direction: column; gap: 16px; }
+      nav a.nav-link { display: none; }
+      .flow::before { display: none; }
+    }
+
+    /* ── Reduced motion ─────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="container">
+    <img class="nav-logo" src="frictionizer_logo.png" alt="Frictionizer icon" />
+    <span class="nav-wordmark">Frictionizer</span>
+    <a class="nav-link" href="#how-it-works">How it works</a>
+    <a class="nav-link" href="#install">Install</a>
+    <a class="nav-cta" href="https://github.com/Horsethecompanion/frictionizer/releases/latest/download/frictionizer.apk">Download APK</a>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="container">
+    <img class="hero-icon" src="frictionizer_logo.png" alt="Frictionizer app icon" />
+    <h1>Pause before<br />you <em>scroll</em>.</h1>
+    <p class="lead">
+      Frictionizer adds one small question before your time-wasting apps open.
+      Not a blocker. Not a lecture. Just a moment to decide if this is
+      actually what you want to be doing.
+    </p>
+    <a class="btn-download"
+       href="https://github.com/Horsethecompanion/frictionizer/releases/latest/download/frictionizer.apk">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download for Android
+    </a>
+    <p class="small-note">Free. No account. No ads. Android 7+.</p>
+  </div>
+</div>
+
+<!-- ── Intro strip ───────────────────────────────────────────────────────── -->
+<div class="intro-strip">
+  <div class="container">
+    <blockquote>
+      "A little <span>friction</span> is good for you."
+    </blockquote>
+  </div>
+</div>
+
+<!-- ── How it works ──────────────────────────────────────────────────────── -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">One question. Every time.</h2>
+    <p class="section-sub">
+      You choose which apps to monitor — Instagram, YouTube, Reddit, whatever
+      your weakness is. The next time you open one, this is what happens:
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <h3>You tap the app</h3>
+          <p>Frictionizer intercepts the moment the app opens — before anything loads.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <h3>A question appears</h3>
+          <p><strong>"What are you doing?"</strong> Five options. You must pick one before the app opens. No skip button.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <h3>A short countdown runs</h3>
+          <p>You can't tap an answer until the countdown reaches zero — so you can't just muscle-memory past it. The wait starts at 1 second on day one and grows gradually from there.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-body">
+          <h3>The app opens</h3>
+          <p>That's it. No blocking, no guilt, no data sent anywhere. Just a pause.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Boiling frog ───────────────────────────────────────────────────────── -->
+<section class="section" id="countdown">
+  <div class="container">
+    <p class="section-eyebrow">The boiling frog</p>
+    <h2 class="section-title">It gets harder, slowly.</h2>
+    <p class="section-sub">
+      The countdown before you can pick an answer grows by one second every day,
+      up to a 60-second cap. The idea: you barely notice it at first, and by the time
+      it's a real pause, the habit of stopping to think is already there.
+    </p>
+
+    <div class="frog-card">
+      <div class="frog-emoji">🐸</div>
+      <div>
+        <h3>Gradual by design</h3>
+        <p>
+          You can reset the countdown in Settings if you want to — but you'll need
+          to type a randomly generated 10-character code first. Just enough friction
+          to make it a deliberate choice.
+        </p>
+        <table class="day-table">
+          <thead>
+            <tr><th>Day</th><th>Wait before you can answer</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Day 1</td><td>1 second</td></tr>
+            <tr><td>Day 7</td><td>7 seconds</td></tr>
+            <tr><td>Day 30</td><td>30 seconds</td></tr>
+            <tr><td>Day 60+</td><td>60 seconds (cap)</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px; font-size:13px;">
+          <strong>Bedtime mode</strong> is on by default: within two hours of your set bedtime,
+          the minimum wait jumps to 15 seconds. Late-night scrolling should require
+          a little more intention.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Install ────────────────────────────────────────────────────────────── -->
+<section class="section" id="install">
+  <div class="container">
+    <p class="section-eyebrow">Installation</p>
+    <h2 class="section-title">Installing outside the Play Store</h2>
+    <p class="section-sub">
+      Frictionizer isn't on the Play Store yet, so installation takes a few extra
+      steps. It's straightforward — here's exactly what to do.
+    </p>
+
+    <!-- Step 1 -->
+    <div class="install-step">
+      <div class="step-num">1</div>
+      <h3>Download the APK to your phone</h3>
+      <p>
+        Tap the button below on your Android phone to download the installer file
+        (called an APK). If your browser asks whether to keep the file, choose
+        <strong>Keep</strong> or <strong>Download anyway</strong>.
+      </p>
+      <div style="margin-top:14px;">
+        <a class="btn-download" style="display:inline-flex; font-size:14px; padding:10px 20px;"
+           href="https://github.com/Horsethecompanion/frictionizer/releases/latest/download/frictionizer.apk">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download frictionizer.apk
+        </a>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="install-step">
+      <div class="step-num">2</div>
+      <h3>Allow installation from this source</h3>
+      <p>
+        Android blocks installs from outside the Play Store by default. To unlock it
+        for this one download:
+      </p>
+      <ul style="margin-top:10px;">
+        <li>Open your phone's <strong>Settings</strong></li>
+        <li>Search for <strong>"Install unknown apps"</strong> or go to
+            <strong>Apps → Special app access → Install unknown apps</strong></li>
+        <li>Find your browser (e.g. Chrome) in the list and toggle it on</li>
+      </ul>
+      <div class="note">
+        💡 You can turn this off again after installing Frictionizer — it only
+        needs to be on for the install itself.
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="install-step">
+      <div class="step-num">3</div>
+      <h3>Open the downloaded file</h3>
+      <p>
+        Go to your <strong>Downloads</strong> folder (or pull down the notification
+        shade — the download should appear there) and tap
+        <strong>frictionizer.apk</strong>. Tap <strong>Install</strong> when
+        prompted.
+      </p>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="install-step">
+      <div class="step-num">4</div>
+      <h3>Enable the Accessibility Service</h3>
+      <p>
+        Open Frictionizer. You'll see a banner saying the service isn't running yet.
+        Tap <strong>Enable in Accessibility Settings</strong>, find
+        <strong>Frictionizer</strong> in the list, and turn it on.
+      </p>
+      <div class="note">
+        🔒 This is the permission that lets Frictionizer detect when you open an
+        app. It's the same kind of permission used by password managers and screen
+        readers. No data leaves your device — see below.
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="install-step">
+      <div class="step-num">5</div>
+      <h3>Choose your apps and activities</h3>
+      <p>
+        Back in Frictionizer, tap <strong>Select apps</strong> to choose which apps
+        trigger the prompt. Common time-wasters — Instagram, YouTube, Reddit, TikTok
+        and others — are pre-listed if you have them installed. You can also edit the
+        five activity labels to match how you actually spend your time.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Permissions ────────────────────────────────────────────────────────── -->
+<section class="section" id="privacy">
+  <div class="container">
+    <p class="section-eyebrow">Permissions &amp; privacy</p>
+    <h2 class="section-title">What it asks for, and why.</h2>
+    <p class="section-sub">
+      Frictionizer asks for two permissions. That's it.
+    </p>
+
+    <div class="perms-grid">
+      <div class="perm-card">
+        <div class="perm-icon">♿</div>
+        <h4>Accessibility Service</h4>
+        <p>
+          Detects when you open a monitored app, so the prompt can appear.
+          The service only reads the app name — it cannot see what's on screen
+          or read what you type.
+        </p>
+      </div>
+      <div class="perm-card">
+        <div class="perm-icon">📋</div>
+        <h4>Query Installed Apps</h4>
+        <p>
+          Lists the apps on your phone so you can choose which ones to monitor.
+          The list never leaves your device.
+        </p>
+      </div>
+    </div>
+
+    <div class="perm-privacy">
+      <span class="shield">🔒</span>
+      No internet access. No account required. No analytics. Everything — your app list,
+      your usage stats, your choices — stays on your phone.
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <img src="frictionizer_logo.png" alt="Frictionizer" />
+    <span>Frictionizer &mdash; a little friction is good for you</span>
+    <a href="https://github.com/Horsethecompanion/frictionizer">GitHub →</a>
+  </div>
+</footer>
+
+</body>
+</html>
